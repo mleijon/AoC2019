@@ -1,10 +1,3 @@
-index = [0]*5
-amp_input = [0]*6
-restart_amps = False
-amp_quit = [False]*5
-data = []
-
-
 def all_comb(phases):
     c = []
     for i in phases:
@@ -17,13 +10,7 @@ def all_comb(phases):
 
 
 def run_amp(phases):
-    global index
-    global amp_input
-    global data
-    global amp_quit
-
     def operation(opc):
-        global amp_quit
         nonlocal phase
         nonlocal inpp
         nonlocal amp
@@ -49,10 +36,7 @@ def run_amp(phases):
                 data[amp][data[amp][index[amp] + 1]] = phase
                 inpp = 1
             else:
-                if amp < 4:
-                    data[amp][data[amp][index[amp] + 1]] = amp_input[amp]
-                else:
-                    data[amp][data[amp][index[amp] + 1]] = amp_input[amp]
+                data[amp][data[amp][index[amp] + 1]] = amp_input[amp]
                 inpp = 0
         elif opc in ['4', '104']:
             send_signal = True
@@ -164,9 +148,6 @@ def run_amp(phases):
     while not amp_quit[4]:
         for amp in range(5):
             count += 1
-            if restart_amps:
-                index = [0] * 5
-                data = [data_org.copy()]*5
             send_signal = False
             inpp = 0
             opcode = data[amp][index[amp]]

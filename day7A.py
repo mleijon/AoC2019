@@ -173,5 +173,3 @@ if __name__ == '__main__':
         if new_amp_input > amp_out_max:
             amp_out_max = new_amp_input
     print(amp_out_max)
-
-
